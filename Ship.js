@@ -5,7 +5,8 @@ class Ship {
   }
 
   hit() {
-    return this.hits ++
+    this.hits ++
+    return this.hits
   }
 
   isSunk () {
