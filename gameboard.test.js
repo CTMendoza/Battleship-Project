@@ -31,3 +31,16 @@ test('testing Gameboard class ship placement', () => {
 
   expect(gameboard.placeShip(2, 5, ship6, 'vertical')).toBe(`Error: A ship already occupies this space`)
 })
+
+test('testing Gameboard receiveAttack method', () => {
+  const gameboard = new Gameboard()
+  const ship1 = new Ship(3)
+  gameboard.placeShip(0, 0, ship1, 'horizontal')
+  expect(gameboard.receiveAttack(0,0)).toStrictEqual('hit')
+  expect(gameboard.receiveAttack(0, 1)).toStrictEqual('hit')
+  expect(gameboard.receiveAttack(0, 2)).toStrictEqual('hit')
+  expect(gameboard.receiveAttack(0, 3)).toStrictEqual('missed')
+  expect(gameboard.missedHits).toStrictEqual([[0,3]])
+  expect(ship1.hits).toBe(3)
+  expect(ship1.isSunk()).toBe(true)
+})

@@ -14,19 +14,23 @@ class Gameboard {
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null]
   ]
+    this.missedHits = []
   }
 
-  receiveAttack() {
-
+  receiveAttack(x,y) {
+    if(this.board[x][y] !== null) {
+      this.board[x][y].hit()
+      return 'hit'
+    }
+    this.missedHits.push([x,y])
+    return 'missed'
   }
 
   placeShip(x,y,ship, direction) {
+
     if((x < 0 || x > 9 ) || (y < 0 || y > 9)) {
       return 'Error: Either x or y cooridnate is outside the bounds of the board. Please re-enter coordinates'
     }
-    // if(this.board[x][y] !== null) {
-    //   return `Error: ${this.board[x][y]} already occupys this space`
-    // }
 
     if( direction === 'horizontal') {
       let i = 0
@@ -39,7 +43,6 @@ class Gameboard {
         }
         i ++
       }
-
       i = 0;
       while (i < ship.length) {
         this.board[x][y + i] = ship
@@ -48,7 +51,6 @@ class Gameboard {
 
       return ship
     }
-
 
     if ( direction === 'vertical') {
       let i = 0;
@@ -61,7 +63,6 @@ class Gameboard {
         }
         i++
       }
-
       i = 0;
       while (i < ship.length) {
         this.board[x + i][y] = ship
@@ -69,8 +70,10 @@ class Gameboard {
       }
       return ship
     }
+
     return 'Error: Direction must be either "horizontal" or "vertical"';
   }
+
 
 }
 
