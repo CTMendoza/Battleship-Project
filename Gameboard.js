@@ -15,6 +15,8 @@ class Gameboard {
       [null, null, null, null, null, null, null, null, null, null]
   ]
     this.missedHits = []
+
+    this.ships = []
   }
 
   receiveAttack(x,y) {
@@ -24,6 +26,10 @@ class Gameboard {
     }
     this.missedHits.push([x,y])
     return 'missed'
+  }
+
+  allShipsSunk () {
+    return this.ships.every(ship => ship.isSunk())
   }
 
   placeShip(x,y,ship, direction) {
@@ -48,7 +54,7 @@ class Gameboard {
         this.board[x][y + i] = ship
         i++
       }
-
+      this.ships.push(ship)
       return ship
     }
 
@@ -68,6 +74,7 @@ class Gameboard {
         this.board[x + i][y] = ship
         i++
       }
+      this.ships.push(ship)
       return ship
     }
 
