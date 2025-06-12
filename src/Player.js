@@ -10,3 +10,5 @@ class ComputerPlayer {
     this.gameboard = new Gameboard
   }
 }
+
+export {RealPlayer, ComputerPlayer}
