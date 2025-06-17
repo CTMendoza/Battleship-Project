@@ -2,8 +2,17 @@ class DomController {
 
   renderBoard(board, containerElement) {
     // Clear the container
-    containerElement.innerHtml = '';
+    containerElement.innerHTML = '';
     // and re-render based on Gameboard data
+    let gridContainer = document.createElement('div');
+    gridContainer.classList.add('grid-container');
+    for(let i = 0; i < 100; i++) {
+      let cell = document.createElement('div')
+      cell.classList.add('cell')
+      cell.setAttribute('data-cord', JSON.stringify({ x: i % 10, y: Math.floor(i / 10) }))
+      gridContainer.append(cell)
+    }
+    containerElement.append(gridContainer)
   }
 
   setupEventListeners(playerBoardElement, callback) {
