@@ -15,8 +15,14 @@ class DomController {
     containerElement.append(gridContainer)
   }
 
-  setupEventListeners(playerBoardElement, callback) {
+  setupEventListeners(enemyContainerElement, callback) {
+    //loop through each cell and attach an eventListener
+    let cells = enemyContainerElement.querySelectorAll('.cell')
+    cells.forEach(cell => {
+      cell.addEventListener('click', callback)
+    } )
     // Attach click events to enemy board cells
+
   }
 
   updateCell(x,y,result) {
