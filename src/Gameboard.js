@@ -22,9 +22,11 @@ class Gameboard {
   receiveAttack(x,y) {
     if(this.board[x][y] !== null) {
       this.board[x][y].hit()
+      console.log(`Hit at (${x}, ${y})`);
       return 'hit'
     }
     this.missedHits.push([x,y])
+    console.log(`Missed at (${x}, ${y})`);
     return 'missed'
   }
 

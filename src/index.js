@@ -12,11 +12,20 @@ const playerGameboard = player.gameboard
 const playerGrid = playerContainerElement.querySelector('.grid-container')
 const computer = new ComputerPlayer
 const computerGameboard = computer.gameboard
+const compShip1 = new Ship(5)
+const compShip2 = new Ship(4)
+const compShip3 = new Ship(3)
+const compShip4 = new Ship(3)
+const compShip5 = new Ship(2)
+
+computerGameboard.placeShip(0,0, compShip1, 'vertical')
 
 dom.renderBoard(playerGameboard, playerContainerElement)
 dom.renderBoard(computerGameboard, computerContainerelement)
 const computerGrid = computerContainerelement.querySelector('.grid-container');
 dom.setupEventListeners(computerGrid, (e) => {
-  const coord = e.target.getAttribute('data-cord')
-  console.log(JSON.parse(coord))
+  const coord = JSON.parse(e.target.getAttribute('data-cord'))
+  const result = computerGameboard.receiveAttack(coord.x, coord.y);
+  console.log(`Attack at (${coord.x}, ${coord.y}): ${result}`);
+  console.log(`${compShip1.hits}`)
 })

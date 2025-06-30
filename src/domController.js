@@ -9,7 +9,7 @@ class DomController {
     for(let i = 0; i < 100; i++) {
       let cell = document.createElement('div')
       cell.classList.add('cell')
-      cell.setAttribute('data-cord', JSON.stringify({ x: i % 10, y: Math.floor(i / 10) }))
+      cell.setAttribute('data-cord', JSON.stringify({ x: Math.floor(i / 10), y: i % 10 }))
       gridContainer.append(cell)
     }
     containerElement.append(gridContainer)
@@ -21,7 +21,8 @@ class DomController {
     cells.forEach(cell => {
       cell.addEventListener('click', callback)
     } )
-    // Attach click events to enemy board cells
+    // Extract Coordinates Each cell has a data - cord attribute — you'll need to extract and parse that to get the x and y.
+
 
   }
 
