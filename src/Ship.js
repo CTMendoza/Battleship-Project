@@ -6,7 +6,7 @@ class Ship {
 
   hit() {
     this.hits ++
-    return this.hits
+    return true
   }
 
   isSunk () {

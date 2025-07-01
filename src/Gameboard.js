@@ -2,6 +2,7 @@ import {Ship} from "./Ship"
 
 class Gameboard {
   constructor() {
+    // this.board will track if board cells are occupied by ships
     this.board = [
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
@@ -14,14 +15,31 @@ class Gameboard {
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null]
   ]
+    //this.attacks will track if the cells on the board have been attacked whether if it hit a ship or not
+    this.attacks = [
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false],
+      [false, false, false, false, false, false, false, false, false, false]
+    ]
     this.missedHits = []
 
     this.ships = []
   }
 
   receiveAttack(x,y) {
+    if(this.attacks[x][y] === true){
+      return 'this ship cell has already been hit'
+    }
     if(this.board[x][y] !== null) {
       this.board[x][y].hit()
+      this.attacks[x][y] = true
       console.log(`Hit at (${x}, ${y})`);
       return 'hit'
     }
