@@ -26,6 +26,7 @@ const computerGrid = computerContainerelement.querySelector('.grid-container');
 dom.setupEventListeners(computerGrid, (e) => {
   const coord = JSON.parse(e.target.getAttribute('data-cord'))
   const result = computerGameboard.receiveAttack(coord.x, coord.y);
+  dom.updateCell(coord.x, coord.y, result, e)
   console.log(`Attack at (${coord.x}, ${coord.y}): ${result}`);
   console.log(`${compShip1.hits}`)
 })

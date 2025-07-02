@@ -26,9 +26,16 @@ class DomController {
 
   }
 
-  updateCell(x,y,result) {
+  updateCell(x,y,result,e) {
     // Visually update a cell based on 'hit', 'missed', etc.
+    if(result === 'hit') {
+      e.target.classList.add('hit')
+      console.log(e.target.classList)
+    } else if(result === 'missed'){
+      e.target.classList.add('miss')
+      console.log(e.target.classList)
   }
+}
 
   displayMessage(message) {
     // Show turn info, win/lose, etc.
