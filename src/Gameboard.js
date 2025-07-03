@@ -35,17 +35,18 @@ class Gameboard {
 
   receiveAttack(x,y) {
     if(this.attacks[x][y] === true){
-      return 'this ship cell has already been hit'
+      return 'was already issued please choose another cell'
     }
-    if(this.board[x][y] !== null) {
+    else if(this.board[x][y] !== null) {
       this.board[x][y].hit()
       this.attacks[x][y] = true
       console.log(`Hit at (${x}, ${y})`);
-      return 'hit'
+      return 'a hit'
     }
     this.missedHits.push([x,y])
+    this.attacks[x][y] = true
     console.log(`Missed at (${x}, ${y})`);
-    return 'missed'
+    return 'a miss'
   }
 
   allShipsSunk () {
