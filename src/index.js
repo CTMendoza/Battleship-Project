@@ -7,6 +7,7 @@ import './styles.css'
 const dom = new DomController()
 const playerContainerElement = document.getElementById('player-board')
 const computerContainerelement = document.getElementById('computer-board')
+const body = document.body
 const player = new RealPlayer
 const playerGameboard = player.gameboard
 const playerGrid = playerContainerElement.querySelector('.grid-container')
@@ -17,15 +18,20 @@ const compShip2 = new Ship(4)
 const compShip3 = new Ship(3)
 const compShip4 = new Ship(3)
 const compShip5 = new Ship(2)
+let currentTurn = 'player'
+
 
 computerGameboard.placeShip(0,0, compShip1, 'vertical')
 
 dom.renderBoard(playerGameboard, playerContainerElement)
 dom.renderBoard(computerGameboard, computerContainerelement)
 const computerGrid = computerContainerelement.querySelector('.grid-container');
+
 dom.setupEventListeners(computerGrid, (e) => {
+  if(currentTurn !== 'player') return
   const coord = JSON.parse(e.target.getAttribute('data-cord'))
   const result = computerGameboard.receiveAttack(coord.x, coord.y);
   dom.updateCell(result, e)
   dom.displayMessage(`Attack at (${coord.x}, ${coord.y}) was ${result}`)
-})
+  }
+)

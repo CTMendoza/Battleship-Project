@@ -42,9 +42,10 @@ class DomController {
 
   displayMessage(message) {
     // Show turn info, win/lose, etc.
-    const messageElemet = document.getElementById('message')
-    if(messageElemet) {
-      messageElemet.textContent = message
+    const messageElement = document.getElementById('message');
+    if (messageElement) {
+      messageElement.textContent = message;
+      messageElement.classList.add('show');
     }
   }
 
