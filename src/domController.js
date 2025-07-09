@@ -29,14 +29,14 @@ class DomController {
 
   }
 
-  updateCell(result,e) {
+  updateCell(result,cell) {
     // Visually update a cell based on 'hit', 'missed', etc.
     if(result === 'a hit') {
-      e.target.classList.add('hit')
-      console.log(e.target.classList)
+      cell.classList.add('hit')
+      console.log(cell.classList)
     } else if(result === 'a miss'){
-      e.target.classList.add('miss')
-      console.log(e.target.classList)
+      cell.classList.add('miss')
+      console.log(cell.classList)
   }
 }
 

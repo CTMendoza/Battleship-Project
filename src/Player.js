@@ -14,7 +14,7 @@ class ComputerPlayer {
   getRandomCoordinate() {
     let x, y
     do {
-      x = Math.floor(Math.randon() *10)
+      x = Math.floor(Math.random() *10)
       y = Math.floor(Math.random()* 10)
     } while (this.gameboard.attacks[x][y])
    return {x,y}

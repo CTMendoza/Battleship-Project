@@ -31,7 +31,20 @@ dom.setupEventListeners(computerGrid, (e) => {
   if(currentTurn !== 'player') return
   const coord = JSON.parse(e.target.getAttribute('data-cord'))
   const result = computerGameboard.receiveAttack(coord.x, coord.y);
-  dom.updateCell(result, e)
+  dom.updateCell(result, e.target)
   dom.displayMessage(`Attack at (${coord.x}, ${coord.y}) was ${result}`)
+  currentTurn = 'computer'
+
+  setTimeout(() => {
+    const coord = computer.getRandomCoordinate();
+    const x = coord.x;
+    const y = coord.y;
+    const result = playerGameboard.receiveAttack(x,y)
+    // Find the corresponding cell DOM element on player's board
+    const cell = playerContainerElement.querySelector(`[data-cord='${JSON.stringify({ x, y })}']`);
+    dom.updateCell(result, cell);
+    dom.displayMessage(`Computer attacked (${x}, ${y}) and it was ${result}`);
+    currentTurn = 'player'; // switch back to player's turn
+  }, 500)
   }
 )
