@@ -30,12 +30,12 @@ class Gameboard {
     ]
     this.missedHits = []
 
-    this.ships = []
+    this.ships = [new Ship(5), new Ship(4), new Ship(3), new Ship(2), new Ship(2)]
   }
 
   receiveAttack(x,y) {
     if(this.attacks[x][y] === true){
-      return 'was already issued please choose another cell'
+      return
     }
     else if(this.board[x][y] !== null) {
       this.board[x][y].hit()
@@ -75,7 +75,6 @@ class Gameboard {
         this.board[x][y + i] = ship
         i++
       }
-      this.ships.push(ship)
       return ship
     }
 
